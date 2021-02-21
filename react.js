@@ -35,7 +35,7 @@ const sounds = [
     key: 'C',
     mp3: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3'
   },
-]
+];
 
 const App = () => (
   <div id="display" className="display">
@@ -46,16 +46,49 @@ const App = () => (
 );
 
 class Box extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.audio = React.createRef();
+    
+    this.audio.addEventListener('ended');
+    
+    // window.document.addEventListener('keydown', (e) => 
+    //   if(e.key.toUpperCase() === props.text) {
+    //     this.audio.current.play();
+    //   }
+    // });
+  }
+  
+  playSound = () => {
+    this.audio.current.play();
+  }
+  
   render() {
     const { text, audio } = this.props;
     
     return (
-      <div className="box">
+      <div className="box" onClick={this.playSound}>
         {text}
-        <audio src={audio} className="clip" id={text} />
+        <audio ref={this.audio} src={audio} className="clip" id={text} />
       </div>
     )
   }
 }
+
+document.addEventListener('keydown', (e) => {
+  const id = e.key.toUpperCase();
+  const audio = document.getElementById(id);
+  
+  if(audio) {
+    const parent = audio.parentNode;
+    parent.classList.add('active');
+    audio.play();
+    
+    audio.addEventListener('ended', () => {
+      parent.classList.remove('active');
+    });
+  }
+});
 
 ReactDOM.render(<App />, document.getElementById('drum-machine'));
