@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #9b59b6;
+  background-color: darkred;
   font-family: 'Lato', sans-serif;
   margin: 0;
   min-height: 100vh;
@@ -14,13 +14,13 @@ body {
 .container {
   display: flex;
   align-items: center;
-  justufy-content: center;
+  justify-content: center;
   height: 100vh;
 }
 
 .display {
-  background-color: #fff;
-  border-radius: 4px;
+  background-color: gray;
+  border-radius: 85px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-wrap: wrap;
@@ -28,23 +28,29 @@ body {
   padding: 20px;
 }
 
-.box {
+.display > h1 {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.drum-pad {
   border: 2px solid #333;
   display: flex;
   align-items: center;
-  justufy-content: center;
+  justify-content: center;
   font-size: 50px;
   background-color: black;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   color: #fff;
-  border-radius: 4px;
+  border-radius: 85px;
   height: 100px;
   width: 100px;
   margin: 10px;
 }
 
-.box.active {
+.drum-pad.active {
   opacity: 0.8;
   transform: scale(0.95);
 }
